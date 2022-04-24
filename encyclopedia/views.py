@@ -52,7 +52,11 @@ def display_contents(request, title):
             "contents": file_to_html,
         })
     else:
-        return HttpResponseNotFound("Not found")
+        print("Not found, calling not found html")
+        # File not found
+        return render(request, "encyclopedia/not_found.html", {
+            "entry_title": title.capitalize(),
+        })
 
 def new_page(request):
     if request.method == "POST":
@@ -79,7 +83,12 @@ def new_page(request):
             "content": content,
         })
 
-    return render(request, "encyclopedia/new_page.html")
+    title = request.GET.get('title')
+    if not title:
+        title = ""
+    return render(request, "encyclopedia/new_page.html", {
+        "title": title,
+    })
 
 def random_page(request):
     allEntries = util.list_entries()
