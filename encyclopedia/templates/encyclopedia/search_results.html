@@ -1,0 +1,22 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Search Results
+{% endblock %}
+
+{% block body %}    
+
+{% if no_matches_notification %}
+<h1>No Matches, Choose Below</h1>
+{% else %}
+<h1>Results</h1>
+{% endif %}
+    <ul>
+        {% for entry in entries %}
+            <div>
+                <a href="{% url 'md-entry' entry %}">{{ entry }}</a>
+            </div>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
