@@ -19,7 +19,7 @@ def index(request):
 
     # Query string entered, find exact match
     if queryStringValue in allEntries:
-        return title(request, queryStringValue)
+        return display_contents(request, queryStringValue)
     
     # No exact match, find partial matches
     matches = []
